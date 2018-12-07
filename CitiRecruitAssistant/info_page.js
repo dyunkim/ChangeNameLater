@@ -29,6 +29,14 @@ export default class InfoPage extends React.Component {
           body: this.state
       })
   }
+
+  static navigationOptions = {
+    header: null
+  }
+  // constructor(propts) {
+  //   super(props)
+  // }
+
   render() {
     return (
           <ScrollView contentContainerStyle={styles.contentContainer}>
