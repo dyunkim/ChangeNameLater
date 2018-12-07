@@ -2,7 +2,12 @@ import React from 'react';
 import { StyleSheet, Text, View, FlatList, Platform, TextInput, Image } from 'react-native';
 
 export default class InfoPage extends React.Component {
-    
+  static navigationOptions = {
+    header: null
+  }
+  // constructor(propts) {
+  //   super(props)
+  // }
   render() {
     return (
       <View style={styles.container}>

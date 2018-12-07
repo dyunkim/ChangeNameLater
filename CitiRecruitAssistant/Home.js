@@ -80,7 +80,9 @@ export default class Home extends React.Component {
         </TouchableOpacity>
         <SectionList 
           sections={this.state.view_sections}
-          renderItem={({item}) => <TouchableOpacity onPress={() => console.debug("yo")}><Text style={styles.item}>{item.name}</Text></TouchableOpacity>}
+          renderItem={({item}) => <TouchableOpacity onPress={() => this.props.navigation.navigate('Profile')}>
+            <Text style={styles.item}>{item.name}</Text>
+          </TouchableOpacity>}
           renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}
           keyExtractor={(item, index) => index}
         />
