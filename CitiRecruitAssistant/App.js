@@ -1,21 +1,12 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet, SectionList, Text, View, TextInput, Button, Image } from 'react-native';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
+import Home from './Home';
+import CameraCapture from './camera_capture';
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
-    );
-  }
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const NavigatorStack = createStackNavigator({
+  Home: {screen: Home},
+  Camera: {screen: CameraCapture}
+})
+const Navigator = createAppContainer(NavigatorStack);
+export default Navigator;
