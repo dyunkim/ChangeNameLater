@@ -1,0 +1,41 @@
+CREATE TABLE canidate
+(
+  id              INT unsigned NOT NULL AUTO_INCREMENT, 
+  name            VARCHAR(150) NOT NULL,                
+  email           VARCHAR(150) NOT NULL,                
+  phonenum        VARCHAR(150) NOT NULL,                
+  school          VARCHAR(150) NOT NULL,               
+  address         VARCHAR(150) NOT NULL,               
+  major             VARCHAR(150) NOT NULL,                
+  GPA             VARCHAR(150) NOT NULL,               
+  graddate          DATE NOT NULL,                       
+  skills             VARCHAR(150) NOT NULL,                
+  wrkexpr             VARCHAR(150) NOT NULL,                
+  buzzwrds             VARCHAR(150) NOT NULL,                
+  comments             VARCHAR(2000) NOT NULL,
+  PRIMARY KEY (id)               
+);
+
+INSERT INTO canidate ( name, email, phonenum, school, address, major, GPA, graddate, skills, wrkexpr, buzzwrds, comments) VALUES
+  ( 'Sandy', 'Lennon', '2015-01-03' );
+
+ALTER TABLE canidate
+ADD COLUMN resumepath VARCHAR(150) AFTER comments;
+
+select resumepath from canidate where name = 'John Doe';
+
+update mytable set
+id = value1,
+name = value2,
+email = value1,
+phonenum = value1,
+school = value1,      
+address = value1,    
+major = value1,                
+GPA = value1,              
+graddate = value1,                      
+skills = value1,                
+wrkexpr = value1,               
+buzzwrds  = value1,             
+comments = val
+;
