@@ -23,3 +23,19 @@ ALTER TABLE canidate
 ADD COLUMN resumepath VARCHAR(150) AFTER comments;
 
 select resumepath from canidate where name = 'John Doe';
+
+update mytable set
+id = value1,
+name = value2,
+email = value1,
+phonenum = value1,
+school = value1,      
+address = value1,    
+major = value1,                
+GPA = value1,              
+graddate = value1,                      
+skills = value1,                
+wrkexpr = value1,               
+buzzwrds  = value1,             
+comments = val
+;

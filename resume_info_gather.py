@@ -1,10 +1,12 @@
 import re
+import json
 import mysql.connector
 from pytesseract import image_to_string
 from PIL import Image
 
 class InfoGather:
 	def gather(im):
+		school_dict = ['SMU', 'Southern Methodist University', 'smu','UT Austin', 'UTD', "GT"]
 		resume_text = image_to_string(im)
 
 		email = re.findall(r'[\w\.-]+@[\w\.-]+', resume_text)
@@ -19,13 +21,14 @@ class InfoGather:
 		school = 'null'
 
 		for word in test:
-			if 'smu' in word:
-				school = 'Southern Methodist University'
+			for sch in school_dict:
+				if sch in word:
+					school = 'Southern Methodist University'
 
 		vals = (name[0], email[0], phone[0], school, add[0][0], 'null', gpa[0][1], '2017-05-01','null','null','null','null', path)
 		return vals
 
-	def return_resume_path():
+	def return_resume_path(config):
 		db = mysql.connector.Connect(**config)
 		cursor = db.cursor()
 
@@ -34,7 +37,7 @@ class InfoGather:
 		output = mycursor.fetchall()
 		return output
 
-	def return_id(vals):
+	def return_id(config, vals):
 		name = vals[0]
 		db = mysql.connector.Connect(**config)
 		cursor = db.cursor()
@@ -42,6 +45,42 @@ class InfoGather:
 		cursor.execute("SELECT id FROM canidate WHERE name = (name) VALUES (%s)", name)
 		output = mycursor.fetchall()
 		return output
+
+	def update_profile(jsonin):
+		config = {
+	        'host': 'localhost',
+	        'port': 3306,
+	        'database': 'Profile',
+	        'user': 'root',
+	        'password': 'password123',
+	        'charset': 'utf8',
+	        'use_unicode': True,
+	        'get_warnings': True,
+	    }
+
+	    data = json.loads(jsonin)
+
+	    #TODO make data variable look like resume_vals
+
+		db = mysql.connector.Connect(**config)
+		cursor = db.cursor()
+		sql = "UPDATE canidate SET id = %s, name = %s, email = %s, phonenum = %s, school = %s, address = %s, major = %s, GPA = %s, graddate = %s, skills = %s, wrkexpr = %s, buzzwrds = %s, comments = %s"
+		cursor.execute(sql, data)
+		output = mycursor.fetchall()
+		return output
+
+	def retrieve_data(config):
+
+    	con = mdb.connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME)
+    
+    	with con:
+        cur = con.cursor()
+        sql = "SELECT * FROM canidate"
+        cur.execute(sql)
+
+        results = cur.fetchall()
+
+        return results
 
 	def main(config, resume_vals):
 	    output = []
@@ -76,4 +115,4 @@ class InfoGather:
 
 	    resume_vals = gather(im)
 	    main(config, resume_vals)
-	    return return_id(resume_vals)
+	    return return_id(config, resume_vals)
