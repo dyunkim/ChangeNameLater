@@ -15,3 +15,11 @@ CREATE TABLE canidate
   comments             VARCHAR(2000) NOT NULL,
   PRIMARY KEY (id)               
 );
+
+INSERT INTO canidate ( name, email, phonenum, school, address, major, GPA, graddate, skills, wrkexpr, buzzwrds, comments) VALUES
+  ( 'Sandy', 'Lennon', '2015-01-03' );
+
+ALTER TABLE canidate
+ADD COLUMN resumepath VARCHAR(150) AFTER comments;
+
+select resumepath from canidate where name = 'John Doe';
