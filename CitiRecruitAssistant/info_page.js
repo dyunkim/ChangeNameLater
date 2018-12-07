@@ -1,10 +1,11 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList, Platform, TextInput, Image } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Platform, TextInput, Image, ScrollView} from 'react-native';
 
 export default class InfoPage extends React.Component {
     
   render() {
     return (
+          <ScrollView contentContainerStyle={styles.contentContainer}>
       <View style={styles.container}>
         
           <Image
@@ -147,6 +148,7 @@ export default class InfoPage extends React.Component {
         />
         
       </View>
+</ScrollView>
     );
   }
 }
