@@ -1,15 +1,45 @@
 import React from 'react';
-import { StyleSheet, Text, View, FlatList, Platform, TextInput, Image } from 'react-native';
+import { StyleSheet, Text, View, FlatList, Platform, TextInput, Image, Button, ScrollView} from 'react-native';
 
 export default class InfoPage extends React.Component {
+    
+    constructor(props) {
+        super(props)
+        this.state = {
+            name: "",
+            email: ""
+        }
+    }
+//    send_data() {
+//        request.POST(this.state)
+//    }
+//    send(){
+//        request
+//          .post(SERVER)
+//          .on('error', function(err) {
+//            console.log(err)
+//        })
+//    }
+//  .pipe(fs.createWriteStream(this.state))
+//    
+  onPressSave() {
+      url = 'http://localhost:5000/updateProfile'
+      fetch(url, {
+          method: 'POST',
+          body: this.state
+      })
+  }
+
   static navigationOptions = {
     header: null
   }
   // constructor(propts) {
   //   super(props)
   // }
+
   render() {
     return (
+          <ScrollView contentContainerStyle={styles.contentContainer}>
       <View style={styles.container}>
         
           <Image
@@ -17,7 +47,7 @@ export default class InfoPage extends React.Component {
     style={styles.image}
   ></Image>
         
-        <Text style={styles.headerText}>
+        <Text style={styles.headerText} onChangeText={(text) => this.setState({name: text})}>
           Name:
         </Text>
 
@@ -151,9 +181,17 @@ export default class InfoPage extends React.Component {
           underlineColorAndroid="transparent"
         />
         
+            <Button 
+                onPress={this.onPressSave}
+                title="Save!"
+                color = "#841584"
+
+            />
       </View>
+</ScrollView>
     );
   }
+  
 }
 
 const styles = StyleSheet.create({
@@ -165,3 +203,5 @@ const styles = StyleSheet.create({
     paddingTop:60,
   },
 });
+
+
