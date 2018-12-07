@@ -82,7 +82,7 @@ class InfoGather:
 
         return results
 
-	def main(config, resume_vals):
+	def insert_database(config, resume_vals):
 	    output = []
 	    cnx = mysql.connector.connect(**config)
 	    cur = cnx.cursor()
@@ -114,5 +114,5 @@ class InfoGather:
 	    }
 
 	    resume_vals = gather(im)
-	    main(config, resume_vals)
+	    insert_database(config, resume_vals)
 	    return return_id(config, resume_vals)
