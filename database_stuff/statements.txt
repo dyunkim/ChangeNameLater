@@ -1,0 +1,17 @@
+CREATE TABLE canidate
+(
+  id              INT unsigned NOT NULL AUTO_INCREMENT, 
+  name            VARCHAR(150) NOT NULL,                
+  email           VARCHAR(150) NOT NULL,                
+  phonenum        VARCHAR(150) NOT NULL,                
+  school          VARCHAR(150) NOT NULL,               
+  address         VARCHAR(150) NOT NULL,               
+  major             VARCHAR(150) NOT NULL,                
+  GPA             VARCHAR(150) NOT NULL,               
+  graddate          DATE NOT NULL,                       
+  skills             VARCHAR(150) NOT NULL,                
+  wrkexpr             VARCHAR(150) NOT NULL,                
+  buzzwrds             VARCHAR(150) NOT NULL,                
+  comments             VARCHAR(2000) NOT NULL,
+  PRIMARY KEY (id)               
+);

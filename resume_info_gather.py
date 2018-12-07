@@ -2,7 +2,7 @@ import re
 from pytesseract import image_to_string
 from PIL import Image
 
-path = '/vagrant/projects/playground/hack/ChangeNameLater/cleantest.jpg'
+path = '/vagrant/hack/ChangeNameLater/resume_samples/cleantest.jpg'
 
 im = Image.open(path)
 #print(im)
