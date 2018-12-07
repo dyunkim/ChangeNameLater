@@ -34,6 +34,14 @@ class InfoGather:
 		output = mycursor.fetchall()
 		return output
 
+	def return_id(vals):
+		name = vals[0]
+		db = mysql.connector.Connect(**config)
+		cursor = db.cursor()
+
+		cursor.execute("SELECT id FROM canidate WHERE name = (name) VALUES (%s)", name)
+		output = mycursor.fetchall()
+		return output
 
 	def main(config, resume_vals):
 	    output = []
@@ -68,3 +76,4 @@ class InfoGather:
 
 	    resume_vals = gather(im)
 	    main(config, resume_vals)
+	    return return_id(resume_vals)
