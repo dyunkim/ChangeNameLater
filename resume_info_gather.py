@@ -57,8 +57,8 @@ class InfoGather:
 	        'use_unicode': True,
 	        'get_warnings': True,
 	    }
-
-	    data = json.loads(jsonin)
+		
+		data = json.loads(jsonin)
 
 	    #TODO make data variable look like resume_vals
 
@@ -70,17 +70,17 @@ class InfoGather:
 		return output
 
 	def retrieve_data(config):
-
-    	con = mdb.connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME)
+	
+		con = mdb.connect(DB_HOST, DB_USER, DB_PASSWORD, DB_NAME)
     
-    	with con:
-        cur = con.cursor()
-        sql = "SELECT * FROM canidate"
-        cur.execute(sql)
+		with con:
+			cur = con.cursor()
+			sql = "SELECT * FROM canidate"
+			cur.execute(sql)
 
-        results = cur.fetchall()
-
-        return results
+			results = cur.fetchall()
+			
+			return results
 
 	def insert_database(config, resume_vals):
 	    output = []

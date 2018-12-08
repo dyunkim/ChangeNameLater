@@ -1,6 +1,8 @@
 import React from 'react';
-import { StyleSheet, SectionList, Text, View, TextInput, Button, Image, TouchableOpacity } from 'react-native';
+import { AppRegistry, StyleSheet, SectionList, Text, View, TextInput, Button, Image, TouchableOpacity } from 'react-native';
 import { Toolbar } from 'react-native-material-ui';
+import { name as appName } from "./app.json"; 
+
 
 export default class Home extends React.Component {
 
@@ -80,7 +82,7 @@ export default class Home extends React.Component {
         </TouchableOpacity>
         <SectionList 
           sections={this.state.view_sections}
-          renderItem={({item}) => <TouchableOpacity onPress={() => this.props.navigation.navigate('Profile')}>
+          renderItem={({item}) => <TouchableOpacity onPress={() => this.props.navigation.navigate('Profile', {id: item.id})}>
             <Text style={styles.item}>{item.name}</Text>
           </TouchableOpacity>}
           renderSectionHeader={({section}) => <Text style={styles.sectionHeader}>{section.title}</Text>}

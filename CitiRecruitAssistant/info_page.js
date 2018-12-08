@@ -7,21 +7,22 @@ export default class InfoPage extends React.Component {
         super(props)
         this.state = {
             name: "",
-            email: ""
+            email: "",
+            comment: ""
         }
+        this.getProfile = this.getProfile.bind(this)
     }
-//    send_data() {
-//        request.POST(this.state)
-//    }
-//    send(){
-//        request
-//          .post(SERVER)
-//          .on('error', function(err) {
-//            console.log(err)
-//        })
-//    }
-//  .pipe(fs.createWriteStream(this.state))
-//    
+
+    componentDidMount() {
+      this.getProfile()
+    }
+  getProfile() {
+    id = this.props.navigation.getParam('id')
+    fetch('http://localhost:5000/profile/' + id)
+    .then(response => response.json())
+    .then(data=> this.setState({name: data.name, email: data.email, comment: data.comment}))
+  }
+
   onPressSave() {
       url = 'http://localhost:5000/updateProfile'
       fetch(url, {
@@ -52,10 +53,10 @@ export default class InfoPage extends React.Component {
         </Text>
 
         <TextInput
-          // Adding hint in TextInput using Placeholder option.
           placeholder=" "
           // Making the Under line Transparent.
           underlineColorAndroid="transparent"
+          value={"David Kim"}
         />
         
         <Text style={styles.headerText}>
@@ -74,9 +75,9 @@ export default class InfoPage extends React.Component {
         </Text>
 
         <TextInput
-          // Adding hint in TextInput using Placeholder option.
           placeholder=" "
           // Making the Under line Transparent.
+          value={"david.y.kim@citi.com"}
           underlineColorAndroid="transparent"
         />
         
@@ -175,7 +176,7 @@ export default class InfoPage extends React.Component {
         </Text>
 
         <TextInput
-          // Adding hint in TextInput using Placeholder option.
+          value={this.state.comments}
           placeholder="Type comments here"
           // Making the Under line Transparent.
           underlineColorAndroid="transparent"
